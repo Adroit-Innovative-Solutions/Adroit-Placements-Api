@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlacementRepository extends JpaRepository<PlacementDetails, Long> {
+public interface PlacementRepository extends JpaRepository<PlacementDetails, String> {
 
     // Custom query methods (optional)
     List<PlacementDetails> findByConsultantName(String consultantName);

@@ -1,6 +1,5 @@
 package com.adroit.placements.controller;
 
-
 import com.adroit.placements.dto.PlacementResponseDto;
 import com.adroit.placements.model.PlacementDetails;
 import com.adroit.placements.service.PlacementService;
@@ -9,9 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 @RequestMapping("/candidate")
@@ -20,56 +18,93 @@ public class PlacementController {
     @Autowired
     private PlacementService placementService;
 
-    // Create a new placement
+    private ResponseEntity<Object> buildResponse(boolean success, String message, Object data, HttpStatus status) {
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("success", success);
+        response.put("message", message);
+        response.put("timestamp", LocalDateTime.now());
+        response.put("data", data);
+        return new ResponseEntity<>(response, status);
+    }
+
     @PostMapping(value = "/placements/save", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<PlacementResponseDto> addPlacement(@RequestBody PlacementDetails placementDetails) {
-        PlacementDetails savedPlacement = placementService.addPlacement(placementDetails);
-        PlacementResponseDto response = PlacementResponseDto.fromEntity(savedPlacement);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    public ResponseEntity<Object> addPlacement(@RequestBody PlacementDetails placementDetails) {
+        try {
+            PlacementDetails savedPlacement = placementService.addPlacement(placementDetails);
+
+            // Constructing the response object with the custom ID
+            Map<String, Object> data = new HashMap<>();
+            data.put("id", savedPlacement.getId());  // Now savedPlacement.getId() will return the custom "PLMNT0001" ID
+            data.put("consultantName", savedPlacement.getConsultantName());
+            data.put("mailId", savedPlacement.getMailId());
+            data.put("client", savedPlacement.getClient());  // Assuming it's "client" not "mailId"
+
+            return buildResponse(true, "Placement saved successfully", data, HttpStatus.OK);
+        } catch (Exception e) {
+            return buildResponse(false, "Failed to save placement: " + e.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    // Get all placements
     @GetMapping("/placements/getAllplacement")
-    public ResponseEntity<List<PlacementResponseDto>> getAllPlacements() {
-        List<PlacementDetails> placements = placementService.getAllPlacements();
-        List<PlacementResponseDto> responseList = placements.stream()
-                .map(PlacementResponseDto::fromEntity)
-                .toList();
-        return new ResponseEntity<>(responseList, HttpStatus.OK);
+    public ResponseEntity<Object> getAllPlacements() {
+        try {
+            List<PlacementDetails> placements = placementService.getAllPlacements();
+            List<PlacementResponseDto> responseList = placements.stream()
+                    .map(PlacementResponseDto::fromEntity)
+                    .toList();
+
+            return buildResponse(true, "Placements fetched successfully", responseList, HttpStatus.OK);
+        } catch (Exception e) {
+            return buildResponse(false, "Failed to fetch placements: " + e.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    // Get a placement by ID
     @GetMapping("/placements/{id}")
-    public ResponseEntity<PlacementResponseDto> getPlacementById(@PathVariable Long id) {
-        Optional<PlacementDetails> placement = placementService.getPlacementById(id);
-        if (placement.isPresent()) {
-            PlacementResponseDto response = PlacementResponseDto.fromEntity(placement.get());
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> getPlacementById(@PathVariable String id) {
+        try {
+            Optional<PlacementDetails> placement = placementService.getPlacementById(id);
+            if (placement.isPresent()) {
+                PlacementResponseDto response = PlacementResponseDto.fromEntity(placement.get());
+                return buildResponse(true, "Placement found", response, HttpStatus.OK);
+            } else {
+                return buildResponse(false, "Placement not found", null, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return buildResponse(false, "Error retrieving placement: " + e.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    // Update a placement by ID
     @PutMapping("/updateplacement/{id}")
-    public ResponseEntity<PlacementResponseDto> updatePlacement(@PathVariable Long id, @RequestBody PlacementDetails placementDetails) {
-        PlacementDetails updatedPlacement = placementService.updatePlacement(id, placementDetails);
-        if (updatedPlacement != null) {
-            PlacementResponseDto response = PlacementResponseDto.fromEntity(updatedPlacement);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> updatePlacement(@PathVariable String id, @RequestBody PlacementDetails placementDetails) {
+        try {
+            // Use String id directly (no conversion to Long)
+            PlacementDetails updatedPlacement = placementService.updatePlacement(id, placementDetails);
+            if (updatedPlacement != null) {
+                PlacementResponseDto response = PlacementResponseDto.fromEntity(updatedPlacement);
+                return buildResponse(true, "Placement updated successfully", response, HttpStatus.OK);
+            } else {
+                return buildResponse(false, "Placement not found", null, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return buildResponse(false, "Failed to update placement: " + e.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    // Delete a placement by ID
+
     @DeleteMapping("/deleteplacement/{id}")
-    public ResponseEntity<Void> deletePlacement(@PathVariable Long id) {
-        boolean isDeleted = placementService.deletePlacement(id);
-        if (isDeleted) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> deletePlacement(@PathVariable String id) {  // Changed to String
+        try {
+            // Pass the id directly as a String
+            boolean isDeleted = placementService.deletePlacement(id);  // Use the id as a String
+            if (isDeleted) {
+                // Use HttpStatus.OK to return content in the response body
+                return buildResponse(true, "Placement deleted successfully", null, HttpStatus.OK);
+            } else {
+                return buildResponse(false, "Placement not found", null, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return buildResponse(false, "Failed to delete placement: " + e.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }
