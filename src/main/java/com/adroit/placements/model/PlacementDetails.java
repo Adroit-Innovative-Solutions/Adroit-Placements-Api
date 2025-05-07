@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 @Entity
@@ -17,9 +18,8 @@ import java.math.BigDecimal;
 public class PlacementDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
+    private String id;
 
     @Column(name = "consultant_name")
     private String consultantName;
@@ -42,6 +42,17 @@ public class PlacementDetails {
 
     @Column(name = "closed_by")
     private String closedBy;
+
+    @Column(name = "created_At")
+    private LocalDate createdAt;
+
+    // Automatically set the current date
+    @PrePersist
+    public void prePersist() {
+        if (createdAt == null) {
+            createdAt = LocalDate.now();
+        }
+    }
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Bill Rate From Client must be positive")
     @Digits(integer = 10, fraction = 5, message = "Invalid format for Bill Rate From Client")
@@ -75,11 +86,11 @@ public class PlacementDetails {
     @Column(name = "visa")
     private String visa;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -201,6 +212,14 @@ public class PlacementDetails {
 
     public void setVisa(String visa) {
         this.visa = visa;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 }
 

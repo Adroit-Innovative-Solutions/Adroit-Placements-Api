@@ -5,31 +5,53 @@ import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 public class PlacementResponseDto {
 
-    private Long id;
+    private String id;
     private String consultantName;
     private String mailId;
+    private String domain;
     private String client;
+    private String vendor;
+    private String doj;
+    private String closedBy;
+    private BigDecimal billRateFromClient;
+    private BigDecimal billRateToCandidate;
+    private BigDecimal payRate;
+    private BigDecimal margin;
+    private String projectIn;
+    private String closedMonth;
+    private String type;
+    private String visa;
+    private String createdAt;
 
-    // Constructor for converting PlacementDetails entity to DTO
-    public PlacementResponseDto(Long id, String consultantName, @Email(message = "Invalid email format") String mailId, String client) {
-        this.id = id;
-        this.consultantName = consultantName;
-        this.mailId = mailId;
-        this.client = client;
+    // Constructor to populate all fields
+    public PlacementResponseDto(PlacementDetails placementDetails) {
+        this.id = placementDetails.getId();
+        this.consultantName = placementDetails.getConsultantName();
+        this.mailId = placementDetails.getMailId();
+        this.domain = placementDetails.getDomain();
+        this.client = placementDetails.getClient();
+        this.vendor = placementDetails.getVendor();
+        this.doj = placementDetails.getDoj();
+        this.closedBy = placementDetails.getClosedBy();
+        this.billRateFromClient = placementDetails.getBillRateFromClient();
+        this.billRateToCandidate = placementDetails.getBillRateToCandidate();
+        this.payRate = placementDetails.getPayRate();
+        this.margin = placementDetails.getMargin();
+        this.projectIn = placementDetails.getProjectIn();
+        this.closedMonth = placementDetails.getClosedMonth();
+        this.type = placementDetails.getType();
+        this.visa = placementDetails.getVisa();
+        this.createdAt = String.valueOf(placementDetails.getCreatedAt());
     }
 
-    // Static factory method for creating DTO from PlacementDetails entity
+    // Static factory method
     public static PlacementResponseDto fromEntity(PlacementDetails placementDetails) {
-        return new PlacementResponseDto(
-                placementDetails.getId(),
-                placementDetails.getConsultantName(),
-                placementDetails.getMailId(),
-                placementDetails.getClient()
-        );
+        return new PlacementResponseDto(placementDetails);
     }
 }

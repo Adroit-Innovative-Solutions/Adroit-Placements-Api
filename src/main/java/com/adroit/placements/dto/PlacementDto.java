@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 
 @Getter
@@ -17,7 +18,7 @@ public class PlacementDto {
 
     @Email(message = "Invalid email format")
     private String mailId;
-
+    private LocalDate createdAt;
     private String domain;
     private String client;
     private String vendor;
