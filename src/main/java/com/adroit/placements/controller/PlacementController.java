@@ -36,8 +36,8 @@ public class PlacementController {
             Map<String, Object> data = new HashMap<>();
             data.put("id", savedPlacement.getId());  // Now savedPlacement.getId() will return the custom "PLMNT0001" ID
             data.put("consultantName", savedPlacement.getConsultantName());
-            data.put("mailId", savedPlacement.getMailId());
-            data.put("client", savedPlacement.getClient());  // Assuming it's "client" not "mailId"
+            data.put("mailId", savedPlacement.getEmailId());
+            data.put("client", savedPlacement.getClientName());  // Assuming it's "client" not "mailId"
 
             return buildResponse(true, "Placement saved successfully", data, HttpStatus.OK);
         } catch (Exception e) {
