@@ -21,7 +21,7 @@ public class PlacementService {
     }
     // Method to get a specific placement by ID (id should be a String)
     public Optional<PlacementDetails> getPlacementById(String id) {
-        return placementRepository.findById(id);  // No need to convert to Long
+        return placementRepository.findById(id);
     }
 
     // Method to add a new placement with custom ID

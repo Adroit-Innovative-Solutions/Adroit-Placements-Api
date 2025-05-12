@@ -28,6 +28,7 @@ public class PlacementDetails {
     @Column(name = "email_id")
     private String emailId;
 
+
     @Column(name = "technology")
     private String technology;
 

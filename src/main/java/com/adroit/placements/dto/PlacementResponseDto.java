@@ -25,9 +25,9 @@ public class PlacementResponseDto {
     private BigDecimal margin;
     private String projectIn;
     private String closedMonth;
-    private String empolymentType;
     private String visa;
     private String createdAt;
+    private String empolymentType;
 
     // Constructor to populate all fields
     public PlacementResponseDto(PlacementDetails placementDetails) {

@@ -24,6 +24,10 @@ public class PlacementDto {
     private String vendorName;
     private String startDate;
     private String closedBy;
+    private String projectIn;
+    private String closedMonth;
+    private String employementType;
+    private String visa;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Bill Rate From Client must be positive")
     @Digits(integer = 10, fraction = 5, message = "Invalid format for Bill Rate From Client")
@@ -41,10 +45,7 @@ public class PlacementDto {
     @Digits(integer = 10, fraction = 5, message = "Invalid format for Margin")
     private BigDecimal margin;
 
-    private String projectIn;
-    private String closedMonth;
-    private String employementType;
-    private String visa;
+
 }
 
 
