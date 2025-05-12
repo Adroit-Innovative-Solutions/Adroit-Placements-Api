@@ -17,12 +17,12 @@ public class PlacementDto {
     private String consultantName;
 
     @Email(message = "Invalid email format")
-    private String mailId;
+    private String emailId;
     private LocalDate createdAt;
-    private String domain;
-    private String client;
-    private String vendor;
-    private String doj;
+    private String technology;
+    private String clientName;
+    private String vendorName;
+    private String startDate;
     private String closedBy;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Bill Rate From Client must be positive")
@@ -43,7 +43,7 @@ public class PlacementDto {
 
     private String projectIn;
     private String closedMonth;
-    private String type;
+    private String employementType;
     private String visa;
 }
 
