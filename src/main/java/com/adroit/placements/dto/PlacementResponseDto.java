@@ -13,11 +13,11 @@ public class PlacementResponseDto {
 
     private String id;
     private String consultantName;
-    private String mailId;
-    private String domain;
-    private String client;
-    private String vendor;
-    private String doj;
+    private String emailId;
+    private String technology;
+    private String clientName;
+    private String vendorName;
+    private String startDate;
     private String closedBy;
     private BigDecimal billRateFromClient;
     private BigDecimal billRateToCandidate;
@@ -25,19 +25,19 @@ public class PlacementResponseDto {
     private BigDecimal margin;
     private String projectIn;
     private String closedMonth;
-    private String type;
     private String visa;
     private String createdAt;
+    private String empolymentType;
 
     // Constructor to populate all fields
     public PlacementResponseDto(PlacementDetails placementDetails) {
         this.id = placementDetails.getId();
         this.consultantName = placementDetails.getConsultantName();
-        this.mailId = placementDetails.getMailId();
-        this.domain = placementDetails.getDomain();
-        this.client = placementDetails.getClient();
-        this.vendor = placementDetails.getVendor();
-        this.doj = placementDetails.getDoj();
+        this.emailId = placementDetails.getEmailId();
+        this.technology = placementDetails.getTechnology();
+        this.clientName = placementDetails.getClientName();
+        this.vendorName = placementDetails.getVendorName();
+        this.startDate= placementDetails.getStartDate();
         this.closedBy = placementDetails.getClosedBy();
         this.billRateFromClient = placementDetails.getBillRateFromClient();
         this.billRateToCandidate = placementDetails.getBillRateToCandidate();
@@ -45,7 +45,7 @@ public class PlacementResponseDto {
         this.margin = placementDetails.getMargin();
         this.projectIn = placementDetails.getProjectIn();
         this.closedMonth = placementDetails.getClosedMonth();
-        this.type = placementDetails.getType();
+        this.empolymentType = placementDetails.getEmpolymentType();
         this.visa = placementDetails.getVisa();
         this.createdAt = String.valueOf(placementDetails.getCreatedAt());
     }

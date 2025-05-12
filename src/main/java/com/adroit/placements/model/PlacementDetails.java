@@ -25,20 +25,21 @@ public class PlacementDetails {
     private String consultantName;
 
     @Email(message = "Invalid email format")
-    @Column(name = "mail_id")
-    private String mailId;
+    @Column(name = "email_id")
+    private String emailId;
 
-    @Column(name = "domain")
-    private String domain;
 
-    @Column(name = "client")
-    private String client;
+    @Column(name = "technology")
+    private String technology;
 
-    @Column(name = "vendor")
-    private String vendor;
+    @Column(name = "client-name")
+    private String clientName;
 
-    @Column(name = "doj")
-    private String doj;
+    @Column(name = "vendor-name")
+    private String vendorName;
+
+    @Column(name = "startDate")
+    private String startDate;
 
     @Column(name = "closed_by")
     private String closedBy;
@@ -80,8 +81,8 @@ public class PlacementDetails {
     @Column(name = "closed_month")
     private String closedMonth;
 
-    @Column(name = "type")
-    private String type;
+    @Column(name = "empolyment-type")
+    private String empolymentType;
 
     @Column(name = "visa")
     private String visa;
@@ -102,44 +103,52 @@ public class PlacementDetails {
         this.consultantName = consultantName;
     }
 
-    public String getMailId() {
-        return mailId;
+    public String getEmailId() {
+        return emailId;
     }
 
-    public void setMailId(String mailId) {
-        this.mailId = mailId;
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getTechnology() {
+        return technology;
     }
 
-    public void setDomain(String domain) {
-        this.domain = domain;
+    public void setTechnology(String technology) {
+        this.technology = technology;
     }
 
-    public String getClient() {
-        return client;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
-    public String getVendor() {
-        return vendor;
+    public String getVendorName() {
+        return vendorName;
     }
 
-    public void setVendor(String vendor) {
-        this.vendor = vendor;
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
-    public String getDoj() {
-        return doj;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setDoj(String doj) {
-        this.doj = doj;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEmpolymentType() {
+        return empolymentType;
+    }
+
+    public void setEmpolymentType(String empolymentType) {
+        this.empolymentType = empolymentType;
     }
 
     public String getClosedBy() {
@@ -196,14 +205,6 @@ public class PlacementDetails {
 
     public void setClosedMonth(String closedMonth) {
         this.closedMonth = closedMonth;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getVisa() {

@@ -11,8 +11,9 @@ public interface PlacementRepository extends JpaRepository<PlacementDetails, Str
 
     // Custom query methods (optional)
     List<PlacementDetails> findByConsultantName(String consultantName);
-    List<PlacementDetails> findByClient(String client);
-    List<PlacementDetails> findByVendor(String vendor);
+    List<PlacementDetails> findByClientName(String clientName);
+    List<PlacementDetails> findByVendorName(String vendorName);
+
 }
 
 
