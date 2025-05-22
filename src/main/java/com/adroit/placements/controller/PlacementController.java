@@ -27,6 +27,7 @@ public class PlacementController {
         return new ResponseEntity<>(response, status);
     }
 
+
     @PostMapping(value = "/placements/save", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Object> addPlacement(@RequestBody PlacementDetails placementDetails) {
         try {

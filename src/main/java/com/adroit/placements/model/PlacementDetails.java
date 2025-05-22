@@ -28,6 +28,7 @@ public class PlacementDetails {
     @Column(name = "email_id")
     private String emailId;
 
+
     @Column(name = "technology")
     private String technology;
 
@@ -80,8 +81,8 @@ public class PlacementDetails {
     @Column(name = "closed_month")
     private String closedMonth;
 
-    @Column(name = "empolyment-type")
-    private String empolymentType;
+    @Column(name = "employment-type")
+    private String employmentType; // ✅ Correct
 
     @Column(name = "visa")
     private String visa;
@@ -142,12 +143,12 @@ public class PlacementDetails {
         this.startDate = startDate;
     }
 
-    public String getEmpolymentType() {
-        return empolymentType;
+    public String getEmploymentType() {
+        return employmentType;
     }
 
-    public void setEmpolymentType(String empolymentType) {
-        this.empolymentType = empolymentType;
+    public void setEmploymentType(String employmentType) {
+        this.employmentType = employmentType;
     }
 
     public String getClosedBy() {

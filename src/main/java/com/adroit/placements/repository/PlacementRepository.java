@@ -13,6 +13,7 @@ public interface PlacementRepository extends JpaRepository<PlacementDetails, Str
     List<PlacementDetails> findByConsultantName(String consultantName);
     List<PlacementDetails> findByClientName(String clientName);
     List<PlacementDetails> findByVendorName(String vendorName);
+
 }
 
 
