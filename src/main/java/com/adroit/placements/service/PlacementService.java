@@ -54,7 +54,7 @@ public class PlacementService {
             updatedPlacement.setMargin(placementDetails.getMargin());
             updatedPlacement.setProjectIn(placementDetails.getProjectIn());
             updatedPlacement.setClosedMonth(placementDetails.getClosedMonth());
-            updatedPlacement.setEmpolymentType(placementDetails.getEmpolymentType());
+            updatedPlacement.setEmploymentType(placementDetails.getEmploymentType());
             updatedPlacement.setVisa(placementDetails.getVisa());
 
             return placementRepository.save(updatedPlacement);

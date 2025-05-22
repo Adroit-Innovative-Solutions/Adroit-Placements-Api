@@ -27,7 +27,7 @@ public class PlacementResponseDto {
     private String closedMonth;
     private String visa;
     private String createdAt;
-    private String empolymentType;
+    private String employmentType;
 
     // Constructor to populate all fields
     public PlacementResponseDto(PlacementDetails placementDetails) {
@@ -45,7 +45,7 @@ public class PlacementResponseDto {
         this.margin = placementDetails.getMargin();
         this.projectIn = placementDetails.getProjectIn();
         this.closedMonth = placementDetails.getClosedMonth();
-        this.empolymentType = placementDetails.getEmpolymentType();
+        this.employmentType = placementDetails.getEmploymentType();
         this.visa = placementDetails.getVisa();
         this.createdAt = String.valueOf(placementDetails.getCreatedAt());
     }

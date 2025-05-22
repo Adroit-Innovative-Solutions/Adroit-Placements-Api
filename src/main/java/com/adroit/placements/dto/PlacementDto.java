@@ -26,7 +26,8 @@ public class PlacementDto {
     private String closedBy;
     private String projectIn;
     private String closedMonth;
-    private String employementType;
+    private String employmentType;
+
     private String visa;
 
     @DecimalMin(value = "0.0", inclusive = false, message = "Bill Rate From Client must be positive")
