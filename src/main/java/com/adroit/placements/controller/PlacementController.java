@@ -11,6 +11,20 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
+
+@CrossOrigin(origins = {
+        "http://35.188.150.92",
+        "http://192.168.0.140:3000",
+        "http://192.168.0.139:3000",
+        "https://mymulya.com",
+        "http://localhost:3000",
+        "http://192.168.0.135:8080", // Sixth IP
+        "http://182.18.177.16:443", // Seventh IP
+        "http://192.168.0.135:80", // Eighth IP
+        "http://localhost/", // Ninth IP
+        "http://mymulya.com:443", // Tenth IP
+        "http://192.0.168.246:3002"
+})
 @RestController
 @RequestMapping("/candidate")
 public class PlacementController {
