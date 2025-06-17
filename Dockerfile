@@ -29,7 +29,7 @@ WORKDIR /app
 COPY --from=builder /app/target/Adroit-Candidate-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port the app runs on
-EXPOSE 8080
+EXPOSE 7075
 
 
 # Run the JAR file
