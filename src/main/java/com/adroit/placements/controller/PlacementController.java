@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
-@RequestMapping("/candidate")
+@RequestMapping("/adroit")
 public class PlacementController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class PlacementController {
     }
 
 
-    @PostMapping(value = "/placements/save", consumes = "application/json", produces = "application/json")
+    @PostMapping("/placements/save")
     public ResponseEntity<Object> addPlacement(@RequestBody PlacementDetails placementDetails) {
         try {
             PlacementDetails savedPlacement = placementService.addPlacement(placementDetails);
