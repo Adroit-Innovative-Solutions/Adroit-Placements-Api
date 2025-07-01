@@ -1,10 +1,14 @@
 package com.adroit.placements.dto;
 
 import com.adroit.placements.model.PlacementDetails;
-import lombok.Data;
+import jakarta.validation.constraints.Email;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
-@Data // <-- This includes @Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArgsConstructor
+@Getter
+@Setter
 public class PlacementResponseDto {
 
     private String id;
@@ -25,6 +29,7 @@ public class PlacementResponseDto {
     private String createdAt;
     private String empolymentType;
 
+    // Constructor to populate all fields
     public PlacementResponseDto(PlacementDetails placementDetails) {
         this.id = placementDetails.getId();
         this.consultantName = placementDetails.getConsultantName();
@@ -32,7 +37,7 @@ public class PlacementResponseDto {
         this.technology = placementDetails.getTechnology();
         this.clientName = placementDetails.getClientName();
         this.vendorName = placementDetails.getVendorName();
-        this.startDate = placementDetails.getStartDate();
+        this.startDate= placementDetails.getStartDate();
         this.closedBy = placementDetails.getClosedBy();
         this.billRateFromClient = placementDetails.getBillRateFromClient();
         this.billRateToCandidate = placementDetails.getBillRateToCandidate();
@@ -45,11 +50,9 @@ public class PlacementResponseDto {
         this.createdAt = String.valueOf(placementDetails.getCreatedAt());
     }
 
+    // Static factory method
     public static PlacementResponseDto fromEntity(PlacementDetails placementDetails) {
         return new PlacementResponseDto(placementDetails);
-    }
-
-    public PlacementResponseDto() {
     }
 
     public String getId() {
